@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Фестиваль «Зелёный пеликан» | Экология и городская среда</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-weight: 300;
+            background-color: #ffffff;
+            color: #1a2e2c;
+            line-height: 1.45;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Навигация */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e2e8e6;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            color: #2c7a5e;
+            text-decoration: none;
+            border-bottom: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 350;
+            color: #1a2e2c;
+            cursor: pointer;
+            padding: 4px 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links button:hover {
+            color: #2c7a5e;
+        }
+
+        .nav-links button.active {
+            color: #2c7a5e;
+            border-bottom-color: #2c7a5e;
+        }
+
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3c9e6d;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 350;
+        }
+
+        .section {
+            padding: 70px 0;
+            border-bottom: 1px solid #e2e8e6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .hero {
+            padding: 100px 0 80px 0;
+            background: #f4f9f5;
+        }
+
+        .hero-contest {
+            padding: 100px 0 80px 0;
+            background: #eef5f2;
+        }
+
+        .hero-tag {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #2c7a5e;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            color: #2c5a4a;
+            margin-bottom: 2rem;
+            font-weight: 350;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2c7a5e;
+            color: white;
+            padding: 12px 32px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: background 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #2c7a5e;
+            color: #2c7a5e;
+        }
+
+        .btn-outline:hover {
+            background: #2c7a5e;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #1e5a46;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .partner-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 20px;
+            list-style: none;
+            font-size: 0.95rem;
+            color: #2c5a4a;
+        }
+
+        .timeline-item {
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #cbdcd6;
+        }
+
+        .timeline-title {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #1f6e51;
+        }
+
+        .location {
+            background: #f6faf8;
+            padding: 20px 28px;
+            margin-top: 20px;
+        }
+
+        .date-block {
+            background: #eef5f2;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+
+        .deadline {
+            background: #fef5e8;
+            padding: 20px 28px;
+            margin: 20px 0;
+            border-left: 4px solid #e0a34b;
+        }
+
+        .info-box {
+            background: #fafefc;
+            border: 1px solid #d4e2db;
+            padding: 24px;
+        }
+
+        .nomination-card {
+            background: #f6faf8;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .criteria-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+        .criteria-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .criteria-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #2c7a5e;
+        }
+
+        /* Блок для фотографий */
+        .photo-placeholder {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0 20px;
+        }
+
+        .photo-card {
+            flex: 1;
+            min-width: 250px;
+            background: #f0f4f2;
+            border: 1px dashed #9bc2b0;
+            border-radius: 4px;
+            aspect-ratio: 16 / 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #8bb3a4;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .photo-card span {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        .photo-caption {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #2c7a5e;
+        }
+
+        /* Переключение страниц */
+        .page {
+            display: none;
+        }
+        .page.active-page {
+            display: block;
+        }
+
+        footer {
+            background: #eef3f0;
+            padding: 50px 0 40px;
+            font-size: 0.9rem;
+            color: #2b5e4c;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        a {
+            color: #1f6e51;
+            text-decoration: none;
+            border-bottom: 1px dotted #9bc2b0;
+        }
+
+        a:hover {
+            color: #0e4a3a;
+            border-bottom: 1px solid #0e4a3a;
+        }
+
+        hr {
+            margin: 30px 0 20px;
+            border: none;
+            height: 1px;
+            background: #d4e2db;
+        }
+
+        @media (max-width: 800px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .hero, .hero-contest {
+                padding: 60px 0;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .nav-inner {
+                flex-direction: column;
+            }
+            .nav-links {
+                gap: 24px;
+            }
+            .photo-placeholder {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-inner">
+            <span class="logo">Зелёный пеликан</span>
+            <ul class="nav-links">
+                <li><button id="btn-festival" class="active">Фестиваль</button></li>
+                <li><button id="btn-contest">Конкурс «Зелёный город»</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- СТРАНИЦА ФЕСТИВАЛЯ -->
+<div id="page-festival" class="page active-page">
+    <section class="hero">
+        <div class="container">
+            <div class="hero-tag">Санкт-Петербург · Открытый кампус Герценовского университета</div>
+            <h1>Зелёный пеликан</h1>
+            <div class="hero-date">26–27 мая 2026 года<br>фестиваль экологической культуры и городской среды</div>
+            <p style="max-width: 600px; font-size: 1.2rem; margin-bottom: 2rem;">Объединяем академические, молодёжные и профессиональные сообщества для устойчивого развития города.</p>
+            <a href="#fest-about" class="btn">О фестивале</a>
+            <a href="#fest-register" class="btn btn-outline" style="margin-left: 16px;">Как участвовать</a>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <div class="photo-placeholder">
+                <div class="photo-card">
+                    <span>📷</span>
+                    Место для фотографии 1
+                    <div class="photo-caption">здесь будет фото фестиваля</div>
+                </div>
+                <div class="photo-card">
+                    <span>📷</span>
+                    Место для фотографии 2
+                    <div class="photo-caption">здесь будет фото конкурса</div>
+                </div>
+            </div>
+        </div>
+
+        <section id="fest-about" class="section">
+            <div class="container">
+                <h2>О фестивале</h2>
+                <div class="grid-2">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Цель</strong> — популяризация экологической культуры и формирование городской среды для решения просветительских, образовательных и экологических задач.</p>
+                        <p>Фестиваль «Зелёный пеликан» создаёт пространство для междисциплинарной проектной деятельности: школьников, студентов, преподавателей, экспертов, представителей администрации и профильных специалистов.</p>
+                    </div>
+                    <div>
+                        <p><strong>Ключевые направления:</strong><br>
+                        • природосообразная архитектура и умное земледелие<br>
+                        • переработка вторичного сырья и экотехническое проектирование<br>
+                        • дистанционное зондирование, LLM и инновационные технологии в экологии<br>
+                        • ландшафтный дизайн и городское озеленение</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Организаторы и партнёры</h2>
+                <ul class="partner-list">
+                    <li>РГПУ им. А.И. Герцена</li>
+                    <li>Комитет по благоустройству Санкт-Петербурга</li>
+                    <li>Комитет по науке и высшей школе Санкт-Петербурга</li>
+                    <li>Комитет по труду и занятости Санкт-Петербурга</li>
+                    <li>Комитет по природопользованию, охране окружающей среды</li>
+                    <li>ООО «ПАРКСИЗОНС»</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 0.9rem;">Общее руководство — Оргкомитет с участием представителей университета, администрации города и партнёрских организаций.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Место и время</h2>
+                <div class="grid-2">
+                    <div>
+                        <div class="date-block">
+                            <strong>26–27 мая 2026</strong> — основная программа фестиваля
+                        </div>
+                        <p><strong>Локации в сердце Петербурга:</strong><br>
+                        • Воронихинский сквер (Казанская ул., 2)<br>
+                        • Открытый кампус Герценовского университета (Казанская ул., д. 1)<br>
+                        • Главный кампус РГПУ им. А.И. Герцена (наб. реки Мойки, 48–52, вход с Казанской ул.)</p>
+                    </div>
+                    <div>
+                        <p><strong>Для кого:</strong><br>
+                        Студенты, преподаватели, школьники, семьи с детьми, жители и гости города, профильные специалисты, эксперты — всем, кому важно экологическое просвещение и развитие городской среды.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Программа и этапы</h2>
+                <div class="grid-2">
+                    <div>
+                        <h3>Подготовительный этап</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Цикл лекций «Садово-парковое искусство»</div>
+                            <div>22 сентября – 25 декабря 2025</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Осенняя проектная школа «Среда обитания»</div>
+                            <div>27–31 октября 2025</div>
+                            <div style="font-size: 0.9rem; color: #3f6b5c;">Темы: умное земледелие, городское огородничество, энергосбережение, переработка отходов.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Весенняя проектная школа «Зелёный город»</div>
+                            <div>30 марта – 3 апреля 2026</div>
+                            <div style="font-size: 0.9rem; color: #3f6b5c;">Природосообразная архитектура, био- и экотехнические модели, прототипирование.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Основная программа (26–27 мая 2026)</h3>
+                        <ul style="list-style: none; margin-top: 8px;">
+                            <li style="margin-bottom: 16px;">✓ Выставка-экспозиция проектов участников проектных школ и художественные инсталляции партнёров</li>
+                            <li style="margin-bottom: 16px;">✓ Лекторий и экспертный клуб: дискуссии об экологии, урбанистике, искусстве в городском пространстве</li>
+                            <li style="margin-bottom: 16px;">✓ Мастер-классы и экскурсии в лабораториях и открытых пространствах кампуса</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fest-register" class="section">
+            <div class="container">
+                <h2>Условия участия</h2>
+                <div class="grid-2">
+                    <div>
+                        <p><strong>Как стать участником?</strong></p>
+                        <p>• Для посещения лекций, выставки и мастер-классов основного этапа — регистрация откроется не позднее апреля 2026 на сайте фестиваля.<br>
+                        • Для участия в проектных школах или конкурсе «Зелёный город» — подайте заявку в установленные сроки согласно отдельным положениям.</p>
+                    </div>
+                    <div>
+                        <p><strong>Важно:</strong> Участники обязаны соблюдать правила поведения, технику безопасности и регламент площадок. За несовершеннолетних участников ответственность несут сопровождающие лица.</p>
+                        <p style="margin-top: 16px;">Финансирование фестиваля осуществляется за счёт средств университета, грантовых и партнёрских программ. Участие в основной программе бесплатное.</p>
+                    </div>
+                </div>
+                <div class="location" style="margin-top: 30px;">
+                    <p style="margin-bottom: 4px;"><strong>Официальный сайт фестиваля</strong><br>
+                    <a href="https://greenpelican.herzen.spb.ru/" target="_blank">greenpelican.herzen.spb.ru</a></p>
+                    <p style="margin-top: 12px;"><strong>Электронная почта:</strong> <a href="mailto:terraherz-spb@yandex.ru">terraherz-spb@yandex.ru</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Итоги и награждение</h2>
+                <p>Итоги подводятся по каждому направлению фестиваля: проектные школы, конкурсы, лаборатории, арт-пространства. Победители конкурсов награждаются дипломами, сертификатами и призами.</p>
+                <p style="margin-top: 16px;">Лучшие проекты могут быть рекомендованы к реализации на территории кампуса или городских пространствах по согласованию с партнёрами.</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- СТРАНИЦА КОНКУРСА "ЗЕЛЁНЫЙ ГОРОД" -->
+<div id="page-contest" class="page">
+    <section class="hero-contest">
+        <div class="container">
+            <div class="hero-tag">молодёжный конкурс в рамках фестиваля «Зелёный пеликан»</div>
+            <h1>Зелёный город</h1>
+            <p style="font-size: 1.3rem; max-width: 700px; margin: 20px 0;">Конкурс проектов, направленных на улучшение качества городской среды, развитие экологических инициатив и внедрение природосообразных решений.</p>
+            <div class="deadline" style="max-width: 500px; margin: 20px 0 0 0;">
+                <strong>Приём заявок до 20 апреля 2026</strong><br>
+                Итоги подводятся 27 мая 2026 в рамках основной программы фестиваля
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <div class="photo-placeholder">
+                <div class="photo-card">
+                    <span>📷</span>
+                    Место для фотографии 1
+                    <div class="photo-caption">проекты участников прошлых лет</div>
+                </div>
+                <div class="photo-card">
+                    <span>📷</span>
+                    Место для фотографии 2
+                    <div class="photo-caption">церемония награждения</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container">
+                <h2>О конкурсе</h2>
+                <div class="grid-2">
+                    <div>
+                        <p>Конкурс «Зелёный город» проводится для выявления и поддержки лучших молодёжных проектов в области экологии, урбанистики, ландшафтного дизайна и экотехнического проектирования.</p>
+                        <p style="margin-top: 16px;"><strong>Цели конкурса:</strong><br>
+                        • развитие прикладных компетенций в области природопользования и городского озеленения<br>
+                        • создание условий для реализации исследовательских и инженерных проектов<br>
+                        • объединение экологических инициатив и практик</p>
+                    </div>
+                    <div>
+                        <p><strong>Участники:</strong><br>
+                        • учащиеся школ (14–18 лет)<br>
+                        • студенты колледжей и вузов<br>
+                        • молодые специалисты до 30 лет<br>
+                        • проектные команды (до 5 человек)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Номинации</h2>
+                <div class="grid-3">
+                    <div class="nomination-card">
+                        <h3>Природосообразная архитектура</h3>
+                        <p>Проекты зданий, общественных пространств и малых форм с использованием экологичных материалов, энергоэффективных решений и зелёных технологий.</p>
+                    </div>
+                    <div class="nomination-card">
+                        <h3>Умное земледелие и городское огородничество</h3>
+                        <p>Вертикальные фермы, сити-фермерство, автоматизированные системы полива, регенеративное земледелие в условиях города.</p>
+                    </div>
+                    <div class="nomination-card">
+                        <h3>Экотехническое проектирование</h3>
+                        <p>Био- и экотехнические модели, прототипы устройств для переработки отходов, очистки воды, мониторинга состояния окружающей среды.</p>
+                    </div>
+                    <div class="nomination-card">
+                        <h3>Ландшафтный дизайн и озеленение</h3>
+                        <p>Проекты благоустройства дворов, скверов, общественных пространств с использованием нативных растений и природосообразных подходов.</p>
+                    </div>
+                    <div class="nomination-card">
+                        <h3>Цифровые технологии в экологии</h3>
+                        <p>Применение LLM, дистанционного зондирования, фотограмметрии, больших данных для решения экологических задач и мониторинга городской среды.</p>
+                    </div>
+                    <div class="nomination-card">
+                        <h3>Искусство и экология</h3>
+                        <p>Арт-объекты из вторсырья, экологические инсталляции, просветительские проекты на стыке искусства и устойчивого развития.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Требования к проектам</h2>
+                <div class="grid-2">
+                    <div class="info-box">
+                        <h3>Формат подачи</h3>
+                        <ul class="criteria-list">
+                            <li>Описание проекта (до 5 страниц A4, шрифт Helvetica / Arial, кегль 11)</li>
+                            <li>Презентация (до 15 слайдов) или видеоролик (до 3 минут)</li>
+                            <li>Визуализация: чертежи, схемы, 3D-модели, фотографии макета (при наличии)</li>
+                            <li>Бюджетная смета (для проектов, предполагающих реализацию)</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h3>Критерии оценки</h3>
+                        <ul class="criteria-list">
+                            <li>Актуальность и экологическая значимость</li>
+                            <li>Оригинальность и инновационность решения</li>
+                            <li>Реалистичность и проработанность</li>
+                            <li>Междисциплинарный подход</li>
+                            <li>Качество презентации и визуализации</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Жюри</h2>
+                <p>В состав жюри входят представители РГПУ им. А.И. Герцена, Комитета по благоустройству Санкт-Петербурга, Комитета по природопользованию, ведущие архитекторы, ландшафтные дизайнеры и эксперты в области экологических технологий.</p>
+                <p style="margin-top: 16px;">Оценка работ проводится анонимно. Решение жюри окончательно и не подлежит пересмотру.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Призы и награды</h2>
+                <div class="grid-2">
+                    <div>
+                        <p><strong>Победители в каждой номинации получают:</strong></p>
+                        <ul class="criteria-list">
+                            <li>Дипломы и памятные призы от организаторов</li>
+                            <li>Сертификаты на образовательные программы Открытого кампуса</li>
+                            <li>Возможность стажировки у партнёров конкурса</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Гран-при конкурса:</strong><br>
+                        Рекомендация к реализации проекта на территории кампуса РГПУ им. А.И. Герцена или городских пространствах Санкт-Петербурга при поддержке Комитета по благоустройству.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Порядок участия</h2>
+                <div class="timeline-item">
+                    <div class="timeline-title">1. Подача заявки</div>
+                    <div>До 20 апреля 2026 заполнить форму на сайте и приложить проект в соответствии с требованиями.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">2. Отборочный этап</div>
+                    <div>21 апреля – 10 мая 2026 — экспертная оценка работ, отбор финалистов.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">3. Финальная защита</div>
+                    <div>27 мая 2026 — публичная презентация проектов в Открытом кампусе Герценовского университета.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">4. Награждение</div>
+                    <div>27 мая 2026 — церемония закрытия фестиваля «Зелёный пеликан».</div>
+                </div>
+                <div class="location" style="margin-top: 30px;">
+                    <p><strong>Подать заявку можно на официальном сайте:</strong><br>
+                    <a href="https://greenpelican.herzen.spb.ru/contest" target="_blank">greenpelican.herzen.spb.ru/contest</a></p>
+                    <p style="margin-top: 12px;">По вопросам участия: <a href="mailto:contest@greenpelican.herzen.spb.ru">contest@greenpelican.herzen.spb.ru</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div>
+                <strong>«Зелёный пеликан»</strong><br>
+                фестиваль экологии и городской среды<br>
+                Санкт-Петербург, 26–27 мая 2026
+            </div>
+            <div>
+                <div><a href="mailto:terraherz-spb@yandex.ru">terraherz-spb@yandex.ru</a></div>
+                <div><a href="https://greenpelican.herzen.spb.ru/" target="_blank">greenpelican.herzen.spb.ru</a></div>
+                <div style="margin-top: 8px;">Открытый кампус Герценовского университета</div>
+            </div>
+        </div>
+        <hr>
+        <div style="font-size: 0.8rem; opacity: 0.7;">© 2025–2026 Оргкомитет фестиваля «Зелёный пеликан»</div>
+    </div>
+</footer>
+
+<script>
+    // Переключение между страницами
+    const btnFestival = document.getElementById('btn-festival');
+    const btnContest = document.getElementById('btn-contest');
+    const pageFestival = document.getElementById('page-festival');
+    const pageContest = document.getElementById('page-contest');
+
+    function showFestival() {
+        pageFestival.classList.add('active-page');
+        pageContest.classList.remove('active-page');
+        btnFestival.classList.add('active');
+        btnContest.classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showContest() {
+        pageContest.classList.add('active-page');
+        pageFestival.classList.remove('active-page');
+        btnContest.classList.add('active');
+        btnFestival.classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    btnFestival.addEventListener('click', showFestival);
+    btnContest.addEventListener('click', showContest);
+</script>
+
+</body>
+</html>
